@@ -1,0 +1,26 @@
+version: "3"
+services:
+  backend:
+    build: ./les1
+    environment:
+      - MONGODB_CONNSTRING=mongodb://cent:kanayo@mongodb
+    ports:
+      - 3000:3500
+    volumes:
+      - .:/app
+  frontend:
+    build: ./frontend
+    ports:
+      - 4000:3000
+    volumes:
+      - .:/app
+  mongodb:
+    image: mongo:5.0
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=cent
+      - MONGO_INITDB_ROOT_PASSWORD=kanayo
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:
