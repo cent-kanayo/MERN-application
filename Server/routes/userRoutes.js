@@ -1,14 +1,15 @@
-const { Router } = require("express");
+const { Router } = require('express');
 const router = Router();
 const {
   getAllUsers,
   createNewUser,
   updateUser,
   deleteUser,
-} = require("../controllers/userControllers");
-
+} = require('../controllers/userControllers');
+const verifyJWT = require('../middleware/verifyJWT');
+router.use(verifyJWT);
 router
-  .route("/")
+  .route('/')
   .get(getAllUsers)
   .post(createNewUser)
   .patch(updateUser)

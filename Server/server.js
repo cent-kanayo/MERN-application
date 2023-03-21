@@ -6,6 +6,7 @@ const path = require('path');
 
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const server = express();
 
 const PORT = 3500;
@@ -26,7 +27,9 @@ const connectDB = require('./config/dbConn');
 connectDB();
 
 // Middlewares
+
 server.use(logger);
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(cookieParser());
 server.use(cors());
