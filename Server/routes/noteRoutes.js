@@ -1,16 +1,18 @@
-const { Router } = require("express");
+const { Router } = require('express');
+const router = Router();
 
 const {
   getAllNotes,
   createNewNote,
   updateNote,
   deleteNote,
-} = require("../controllers/noteControllers");
+} = require('../controllers/noteControllers');
 
-const router = Router();
+const verifyJWT = require('../middleware/verifyJWT');
+router.use(verifyJWT);
 
 router
-  .route("/")
+  .route('/')
   .get(getAllNotes)
   .post(createNewNote)
   .patch(updateNote)
